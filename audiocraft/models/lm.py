@@ -80,6 +80,10 @@ def init_layer(m: nn.Module,
             weight = m.weight.float()
             init_fn(weight)
             m.weight.data[:] = weight.half()
+        elif m.weight.device.type == 'mps' and m.weight.dtype == torch.float16:
+            weight = m.weight.float()
+            init_fn(weight)
+            m.weight.data[:] = weight.half()
         else:
             init_fn(m.weight)
         if zero_bias_init and m.bias is not None:
@@ -87,6 +91,10 @@ def init_layer(m: nn.Module,
     elif isinstance(m, nn.Embedding):
         init_fn = get_init_fn(method, m.embedding_dim, init_depth=None)
         if m.weight.device.type == 'cpu' and m.weight.dtype == torch.float16:
+            weight = m.weight.float()
+            init_fn(weight)
+            m.weight.data[:] = weight.half()
+        elif m.weight.device.type == 'mps' and m.weight.dtype == torch.float16:
             weight = m.weight.float()
             init_fn(weight)
             m.weight.data[:] = weight.half()

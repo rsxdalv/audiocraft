@@ -68,6 +68,7 @@ def _get_state_dict(
 def load_compression_model(file_or_url_or_id: tp.Union[Path, str], device='cpu', cache_dir: tp.Optional[str] = None):
     pkg = _get_state_dict(file_or_url_or_id, filename="compression_state_dict.bin", cache_dir=cache_dir)
     cfg = OmegaConf.create(pkg['xp.cfg'])
+    print("#######", cfg)
     cfg.device = str(device)
     model = builders.get_compression_model(cfg)
     model.load_state_dict(pkg['best_state'])
@@ -80,6 +81,8 @@ def load_lm_model(file_or_url_or_id: tp.Union[Path, str], device='cpu', cache_di
     cfg = OmegaConf.create(pkg['xp.cfg'])
     cfg.device = str(device)
     if cfg.device == 'cpu':
+        cfg.dtype = 'float32'
+    elif cfg.device == 'mps':
         cfg.dtype = 'float32'
     else:
         cfg.dtype = 'float16'

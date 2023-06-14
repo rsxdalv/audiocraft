@@ -33,7 +33,10 @@ def _clean_lm_cfg(cfg: DictConfig):
 def export_encodec(checkpoint_path: tp.Union[Path, str], out_folder: tp.Union[Path, str]):
     sig = Path(checkpoint_path).parent.name
     assert len(sig) == 8, "Not a valid Dora signature"
-    pkg = torch.load(checkpoint_path, 'cpu')
+    if torch.backends.mps.is_available():
+        pkg = torch.load(checkpoint_path, 'mps')
+    else:
+        pkg = torch.load(checkpoint_path, 'cpu')
     new_pkg = {
         'best_state': pkg['ema']['state']['model'],
         'xp.cfg': OmegaConf.to_yaml(pkg['xp.cfg']),
@@ -46,7 +49,10 @@ def export_encodec(checkpoint_path: tp.Union[Path, str], out_folder: tp.Union[Pa
 def export_lm(checkpoint_path: tp.Union[Path, str], out_folder: tp.Union[Path, str]):
     sig = Path(checkpoint_path).parent.name
     assert len(sig) == 8, "Not a valid Dora signature"
-    pkg = torch.load(checkpoint_path, 'cpu')
+    if torch.backends.mps.is_available():
+        pkg = torch.load(checkpoint_path, 'mps')
+    else:
+        pkg = torch.load(checkpoint_path, 'cpu')
     new_pkg = {
         'best_state': pkg['fsdp_best_state']['model'],
         'xp.cfg': OmegaConf.to_yaml(_clean_lm_cfg(pkg['xp.cfg']))

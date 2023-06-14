@@ -48,6 +48,8 @@ class MusicGen:
         self._progress_callback: tp.Optional[tp.Callable[[int, int], None]] = None
         if self.device.type == 'cpu':
             self.autocast = TorchAutocast(enabled=False)
+        elif self.device.type == 'mps':
+            self.autocast = TorchAutocast(enabled=False)
         else:
             self.autocast = TorchAutocast(
                 enabled=True, device_type=self.device.type, dtype=torch.float16)
@@ -79,8 +81,13 @@ class MusicGen:
         if device is None:
             if torch.cuda.device_count():
                 device = 'cuda'
+                print("#### using CUDA")
+            elif torch.backends.mps.is_available():
+                device = torch.device("mps")
+                print("#### using MPS")
             else:
                 device = 'cpu'
+                print("#### using CPU")
 
         if name == 'debug':
             # used only for unit tests

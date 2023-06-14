@@ -357,6 +357,10 @@ class T5Conditioner(TextConditioner):
             self.autocast = TorchAutocast(enabled=False)
             if self.device != 'cpu':
                 logger.warning("T5 has no autocast, this might lead to NaN")
+        elif autocast_dtype is None or self.device == 'mps':
+            self.autocast = TorchAutocast(enabled=False)
+            if self.device != 'mps':
+                logger.warning("T5 has no autocast, this might lead to NaN")
         else:
             dtype = getattr(torch, autocast_dtype)
             assert isinstance(dtype, torch.dtype)
