@@ -1,5 +1,6 @@
 # please make sure you have already a pytorch install that is cuda enabled!
 av
+aiohttp==3.8.2
 einops
 flashy>=0.0.1
 hydra-core>=1.1
@@ -14,7 +15,7 @@ torchaudio>=2.0.0
 huggingface_hub
 tqdm
 transformers
-xformers
+xformers @ git+https://github.com/jinmingyi1998/xformers@3e0f86d8be909a63055e117c82310252c350ce50
 demucs
 librosa
 gradio
