@@ -206,7 +206,7 @@ def audio_write(stem_name: tp.Union[str, Path],
     if make_parent_dir:
         path.parent.mkdir(exist_ok=True, parents=True)
     try:
-        ta.save(path, wav, sample_rate, **kwargs)
+        ta.save(str(path), wav, sample_rate, **kwargs)
     except Exception:
         if path.exists():
             # we do not want to leave half written files around.
