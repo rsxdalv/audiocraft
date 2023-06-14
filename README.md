@@ -14,3 +14,9 @@ pip install --upgrade pip
 # this step is required.
 pip install --pre --extra-index-url https://download.pytorch.org/whl/nightly/cpu -e .
 ```
+
+## Running MusicGen
+To run the application, you must set the `PYTORCH_ENABLE_MPS_FALLBACK` environment variable when running like so:
+```bash
+PYTORCH_ENABLE_MPS_FALLBACK=1 python app
+```
