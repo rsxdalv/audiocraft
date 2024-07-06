@@ -8,8 +8,8 @@ julius
 num2words
 numpy<2.0.0
 sentencepiece
-spacy==3.7.6
-torch==2.1.0
+spacy>=3.7.6
+torch
 torchaudio>=2.0.0,<2.1.2
 huggingface_hub
 tqdm
