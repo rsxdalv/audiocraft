@@ -1,21 +1,27 @@
 # please make sure you have already a pytorch install that is cuda enabled!
-av
-aiohttp==3.8.2
+av==11.0.0
 einops
 flashy>=0.0.1
 hydra-core>=1.1
 hydra_colorlog
 julius
 num2words
-numpy
+numpy<2.0.0
 sentencepiece
-spacy==3.5.2
-torch>=2.0.0
-torchaudio>=2.0.0
+spacy>=3.6.1
+torch
+torchaudio
 huggingface_hub
 tqdm
-transformers
-xformers @ git+https://github.com/jinmingyi1998/xformers@3e0f86d8be909a63055e117c82310252c350ce50
+transformers>=4.31.0  # need Encodec there.
+xformers
 demucs
 librosa
 gradio
+# torchmetrics
+# encodec
+# protobuf
+# torchvision
+# torchtext
+# pesq
+# pystoi

@@ -12,7 +12,7 @@ from pathlib import Path
 from setuptools import setup, find_packages
 
 
-NAME = 'audiocraft'
+NAME = 'audiocraft_apple_silicon'
 DESCRIPTION = 'Audio research library for PyTorch'
 
 URL = 'https://github.com/fairinternal/audiocraft'
