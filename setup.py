@@ -20,7 +20,7 @@ AUTHOR = 'FAIR Speech & Audio'
 EMAIL = 'defossez@meta.com'
 REQUIRES_PYTHON = '>=3.8.0'
 
-for line in open('audiocraft/__init__.py'):
+for line in open('audiocraft_apple_silicon/__init__.py'):
     line = line.strip()
     if '__version__' in line:
         context = {}
