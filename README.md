@@ -1,5 +1,7 @@
 # Audiocraft (Fork, works with Apple Silicon)
 
+Original fork: https://github.com/trizko/audiocraft
+
 This repo is a fork that works with Apple Silicon devices (e.g. M1 Macbook Pro). The original repo can be found here: https://github.com/facebookresearch/audiocraft
 
 ## Installation
