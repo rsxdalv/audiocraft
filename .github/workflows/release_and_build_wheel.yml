@@ -55,7 +55,8 @@ jobs:
 
       # Install dependencies
       - name: Install Deps
-        run: python -m pip install . torch==2.3.1 wheel ninja build --only-binary
+        run: |
+          python -m pip install . torch==2.3.1 wheel ninja build --only-binary=:all:
 
       # Build the wheel
       - name: Build the wheel
