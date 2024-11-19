@@ -56,7 +56,7 @@ jobs:
       # Install dependencies
       - name: Install Deps
         run: |
-          python -m pip install . torch==2.3.1 wheel ninja build numpy --only-binary=numpy
+          python -m pip install . torch==2.3.1 wheel ninja build numpy --only-binary=numpy spacy==3.7.6
 
       # Build the wheel
       - name: Build the wheel
